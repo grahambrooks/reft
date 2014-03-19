@@ -1,8 +1,8 @@
 package reft.predicate;
 
 import org.junit.Test;
-import reft.MethodPredicate;
-import reft.common.model.MethodInvocationPredicate;
+import reft.model.predicate.MethodPredicate;
+import reft.model.predicate.MethodInvocationPredicate;
 
 import static org.junit.Assert.assertTrue;
 

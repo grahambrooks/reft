@@ -1,7 +1,7 @@
 package reft.refactor;
 
-import reft.common.model.MethodInvocation;
-import reft.common.model.MethodInvocationPredicate;
+import reft.model.MethodInvocation;
+import reft.model.predicate.MethodInvocationPredicate;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package reft.common.model;
+package reft.model;
 
 import javax.lang.model.element.Modifier;
 import java.util.ArrayList;
@@ -7,9 +7,9 @@ import java.util.List;
 
 public class DefaultAnnotatedName implements AnnotatedName {
 
-    private String name = null;
+    private QualifiedName name = null;
 
-    private Collection<Annotation> annontations = new ArrayList<Annotation>();
+    private Collection<Annotation> annontations = new ArrayList<>();
     List<Modifier> modifiers = new ArrayList<>();
 
     public void addModifiers(Collection<Modifier> modifiers) {
@@ -46,11 +46,11 @@ public class DefaultAnnotatedName implements AnnotatedName {
         return modifiers.contains(Modifier.STATIC);
     }
 
-    public String getName() {
+    public QualifiedName getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(QualifiedName name) {
         this.name = name;
     }
 

@@ -1,6 +1,4 @@
-package reft;
-
-import reft.common.model.AnnotatedName;
+package reft.model;
 
 public interface Migration {
     void apply(AnnotatedName model);

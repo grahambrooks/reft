@@ -1,6 +1,7 @@
-package reft.common.model;
+package reft.model.predicate;
 
-import reft.common.QualifiedName;
+import reft.model.MethodInvocation;
+import reft.model.QualifiedName;
 
 public class MethodInvocationPredicate {
     private QualifiedName qualifiedName;

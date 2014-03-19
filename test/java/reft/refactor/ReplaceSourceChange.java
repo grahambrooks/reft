@@ -1,6 +1,6 @@
 package reft.refactor;
 
-import reft.common.model.Location;
+import reft.model.Location;
 
 public class ReplaceSourceChange extends SourceChange {
     private String replacement;

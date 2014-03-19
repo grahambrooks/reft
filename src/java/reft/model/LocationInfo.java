@@ -1,5 +1,5 @@
 
-package reft.common.model;
+package reft.model;
 
 public class LocationInfo implements Location {
     

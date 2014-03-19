@@ -1,11 +1,9 @@
-package reft.common;
+package reft.migration;
 
 import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.util.List;
-import reft.common.model.ClassModelMap;
-import reft.common.model.Location;
-import reft.common.model.MethodInvocation;
-import reft.common.model.MethodInvocationPredicate;
+import reft.model.*;
+import reft.model.predicate.MethodInvocationPredicate;
 
 import java.util.ArrayList;
 import java.util.Collection;

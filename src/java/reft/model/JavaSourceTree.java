@@ -1,4 +1,4 @@
-package reft.common.model;
+package reft.model;
 
 import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.Tree;

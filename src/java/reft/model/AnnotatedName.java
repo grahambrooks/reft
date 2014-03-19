@@ -1,10 +1,10 @@
-package reft.common.model;
+package reft.model;
 
 import java.util.Collection;
 
 public interface AnnotatedName {
 
-    String getName();
+    QualifiedName getName();
         
     Collection<Annotation> getAnnotations();
 

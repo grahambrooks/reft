@@ -1,9 +1,9 @@
 package reft.refactor;
 
-import reft.common.QualifiedName;
-import reft.common.model.LocationInfo;
-import reft.common.model.MethodInvocation;
-import reft.common.model.MethodInvocationPredicate;
+import reft.model.QualifiedName;
+import reft.model.LocationInfo;
+import reft.model.MethodInvocation;
+import reft.model.predicate.MethodInvocationPredicate;
 import org.junit.Test;
 
 import java.util.ArrayList;

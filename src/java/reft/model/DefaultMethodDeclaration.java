@@ -1,4 +1,4 @@
-package reft.common.model;
+package reft.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,9 +6,9 @@ import java.util.Collection;
 public class DefaultMethodDeclaration extends DefaultAnnotatedName implements MethodDeclaration {
 
     private ClassFile owningClass;
-    private Collection<String> parameters = new ArrayList<String>();
+    private Collection<String> parameters = new ArrayList<>();
     private String returnType;
-    Collection<String> exceptions = new ArrayList<String>();
+    Collection<String> exceptions = new ArrayList<>();
 
     public ClassFile getOwningClass() {
         return owningClass;
@@ -51,8 +51,8 @@ public class DefaultMethodDeclaration extends DefaultAnnotatedName implements Me
     }
 
     public String toString() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("MethodDeclaration Name: " + getName());
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("MethodDeclaration Name: ").append(getName());
         buffer.append("\n");
         if (parameters.size() <= 0) {
             buffer.append("No parameters defined ");

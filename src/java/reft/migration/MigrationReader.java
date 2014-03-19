@@ -1,6 +1,6 @@
 package reft.migration;
 
-import reft.common.QualifiedName;
+import reft.model.QualifiedName;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;

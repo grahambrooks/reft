@@ -1,7 +1,7 @@
 package reft;
 
-import reft.common.MigrationDriver;
-import reft.common.model.ClassModelMap;
+import reft.migration.MigrationDriver;
+import reft.model.ClassModelMap;
 import reft.processor.Java8Processor;
 import reft.processor.MigrationController;
 import reft.processor.MigrationTreePathScanner;

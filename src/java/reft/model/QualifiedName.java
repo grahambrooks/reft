@@ -1,4 +1,4 @@
-package reft.common;
+package reft.model;
 
 
 import java.util.*;
@@ -6,6 +6,10 @@ import java.util.*;
 import static com.googlecode.totallylazy.Sequences.sequence;
 
 public class QualifiedName {
+    public String getName() {
+        return name;
+    }
+
     public enum Match {
         FULL, NONE, PARTIAL
     }

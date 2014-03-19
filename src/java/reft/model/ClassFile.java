@@ -1,4 +1,4 @@
-package reft.common.model;
+package reft.model;
 
 import java.util.Collection;
 

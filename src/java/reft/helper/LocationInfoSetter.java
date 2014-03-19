@@ -1,11 +1,10 @@
 package reft.helper;
 
-import reft.common.model.DefaultJavaClassDeclaration;
 import com.sun.source.tree.CompilationUnitTree;
-import reft.common.model.FieldDeclaration;
-import reft.common.model.LocationInfo;
-import reft.common.model.MethodDeclaration;
-import reft.common.util.CodeAnalyzerUtil;
+import reft.model.DefaultJavaClassDeclaration;
+import reft.model.FieldDeclaration;
+import reft.model.LocationInfo;
+import reft.model.MethodDeclaration;
 
 import javax.tools.JavaFileObject;
 import java.io.IOException;
@@ -50,8 +49,7 @@ public class LocationInfoSetter {
 
     private static void setLocInfoOfClass(DefaultJavaClassDeclaration clazzInfo,
                                           CharBuffer buffer, CompilationUnitTree compileTree) {
-        String clazzName = CodeAnalyzerUtil.getSimpleNameFromQualifiedName
-                (clazzInfo.getName());
+        String clazzName = clazzInfo.getName().getName();
         LocationInfo clazzNameLoc = (LocationInfo) clazzInfo.getLocationInfo();
         int startIndex = clazzNameLoc.getStartOffset();
         int endIndex = -1;
@@ -81,11 +79,11 @@ public class LocationInfoSetter {
             if (startIndex >= 0) {
                 String strToSearch = buffer.subSequence(startIndex,
                         buffer.length()).toString();
-                Pattern p = Pattern.compile(methodDeclaration.getName());
+                Pattern p = Pattern.compile(methodDeclaration.getName().toString());
                 Matcher matcher = p.matcher(strToSearch);
                 matcher.find();
                 startIndex = matcher.start() + startIndex;
-                endIndex = startIndex + methodDeclaration.getName().length();
+                endIndex = startIndex + methodDeclaration.getName().toString().length();
             }
             constructorNameLoc.setStartOffset(startIndex);
             constructorNameLoc.setEndOffset(endIndex);
@@ -101,11 +99,11 @@ public class LocationInfoSetter {
             int endIndex = -1;
             if (startIndex >= 0) {
                 String strToSearch = buffer.subSequence(startIndex, buffer.length()).toString();
-                Pattern p = Pattern.compile(methodDeclaration.getName());
+                Pattern p = Pattern.compile(methodDeclaration.getName().toString());
                 Matcher matcher = p.matcher(strToSearch);
                 matcher.find();
                 startIndex = matcher.start() + startIndex;
-                endIndex = startIndex + methodDeclaration.getName().length();
+                endIndex = startIndex + methodDeclaration.getName().toString().length();
             }
             methodNameLoc.setStartOffset(startIndex);
             methodNameLoc.setEndOffset(endIndex);
@@ -120,11 +118,11 @@ public class LocationInfoSetter {
             int endIndex = -1;
             if (startIndex >= 0) {
                 String strToSearch = buffer.subSequence(startIndex, buffer.length()).toString();
-                Pattern p = Pattern.compile(fieldDeclaration.getName());
+                Pattern p = Pattern.compile(fieldDeclaration.getName().toString());
                 Matcher matcher = p.matcher(strToSearch);
                 matcher.find();
                 startIndex = matcher.start() + startIndex;
-                endIndex = startIndex + fieldDeclaration.getName().length();
+                endIndex = startIndex + fieldDeclaration.getName().toString().length();
             }
             methodNameLoc.setStartOffset(startIndex);
             methodNameLoc.setEndOffset(endIndex);

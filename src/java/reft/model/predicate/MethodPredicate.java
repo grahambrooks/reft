@@ -1,9 +1,9 @@
-package reft;
+package reft.model.predicate;
 
-import reft.common.QualifiedName;
-import reft.common.model.ClassFile;
-import reft.common.model.MethodDeclaration;
-import reft.common.model.MethodInvocationPredicate;
+import reft.model.Migration;
+import reft.model.QualifiedName;
+import reft.model.ClassFile;
+import reft.model.MethodDeclaration;
 
 public class MethodPredicate {
     QualifiedName name;

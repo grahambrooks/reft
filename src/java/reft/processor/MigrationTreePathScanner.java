@@ -9,12 +9,12 @@ import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeInfo;
 import com.sun.tools.javac.util.List;
-import reft.common.MigrationDriver;
-import reft.common.QualifiedName;
-import reft.common.model.ClassModelMap;
-import reft.common.model.DefaultJavaClassDeclaration;
-import reft.common.model.LocationInfo;
-import reft.common.model.MethodInvocation;
+import reft.migration.MigrationDriver;
+import reft.model.QualifiedName;
+import reft.model.ClassModelMap;
+import reft.model.DefaultJavaClassDeclaration;
+import reft.model.LocationInfo;
+import reft.model.MethodInvocation;
 import reft.helper.LocationInfoSetter;
 import reft.helper.ScanHelper;
 

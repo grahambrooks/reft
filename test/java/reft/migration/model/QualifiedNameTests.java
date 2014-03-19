@@ -1,6 +1,6 @@
 package reft.migration.model;
 
-import reft.common.QualifiedName;
+import reft.model.QualifiedName;
 import com.googlecode.totallylazy.Arrays;
 import org.junit.Test;
 

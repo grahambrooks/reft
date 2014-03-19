@@ -1,4 +1,4 @@
-package reft.common.model;
+package reft.model;
 
 import javax.lang.model.element.Modifier;
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import java.util.Set;
 public class DefaultFieldDeclaration extends DefaultAnnotatedName implements FieldDeclaration {
 
     private ClassFile owningClass;
-    private Collection<String> fieldTypes = new ArrayList<String>();
+    private Collection<String> fieldTypes = new ArrayList<>();
 
-    public DefaultFieldDeclaration(String name, Set<Modifier> modifiers) {
+    public DefaultFieldDeclaration(QualifiedName name, Set<Modifier> modifiers) {
         this.setName(name);
         this.addModifiers(modifiers);
     }

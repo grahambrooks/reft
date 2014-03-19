@@ -1,10 +1,10 @@
-package reft.common.model;
+package reft.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ClassModelMap {
-    private Map<String, ClassFile> nameMap = new HashMap<String, ClassFile>();
+    private Map<String, ClassFile> nameMap = new HashMap<>();
 
     public ClassModelMap() {
     }

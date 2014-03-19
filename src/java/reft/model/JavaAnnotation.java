@@ -1,4 +1,4 @@
-package reft.common.model;
+package reft.model;
 
 
 public class JavaAnnotation implements Annotation {
@@ -14,9 +14,6 @@ public class JavaAnnotation implements Annotation {
     }
 
     public String toString() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("Annotation Name: " + name);
-        buffer.append("\n");
-        return buffer.toString();
+        return "Annotation Name: " + name + "\n";
     }
 }

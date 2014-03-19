@@ -1,6 +1,4 @@
-package reft.common.model;
-
-import reft.common.QualifiedName;
+package reft.model;
 
 import java.util.Collection;
 

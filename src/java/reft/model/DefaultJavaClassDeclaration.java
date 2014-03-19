@@ -1,10 +1,10 @@
-package reft.common.model;
+package reft.model;
 
+import javax.lang.model.element.NestingKind;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import javax.lang.model.element.NestingKind;
 
 public class DefaultJavaClassDeclaration extends DefaultAnnotatedName implements ClassFile {
 
@@ -14,11 +14,11 @@ public class DefaultJavaClassDeclaration extends DefaultAnnotatedName implements
     private boolean isInterface;
     private boolean isSerializable;
     private DefaultJavaSourceTree sourceTreeInfo;
-    private Collection<MethodDeclaration> methodDeclarations = new ArrayList<MethodDeclaration>();
-    private Collection<MethodDeclaration> constructors = new ArrayList<MethodDeclaration>();
-    private Collection<String> nameOfInterfaces = new ArrayList<String>();
-    private Collection<String> classTypes = new ArrayList<String>();
-    private Map<String, FieldDeclaration> fields = new HashMap<String, FieldDeclaration>();
+    private Collection<MethodDeclaration> methodDeclarations = new ArrayList<>();
+    private Collection<MethodDeclaration> constructors = new ArrayList<>();
+    private Collection<String> nameOfInterfaces = new ArrayList<>();
+    private Collection<String> classTypes = new ArrayList<>();
+    private Map<QualifiedName, FieldDeclaration> fields = new HashMap<>();
 
     public void addField(FieldDeclaration fieldDeclaration) {
         fields.put(fieldDeclaration.getName(), fieldDeclaration);
@@ -28,7 +28,7 @@ public class DefaultJavaClassDeclaration extends DefaultAnnotatedName implements
         return fields.get(fieldName);
     }
 
-    public void setFields(Map<String, FieldDeclaration> fields) {
+    public void setFields(Map<QualifiedName, FieldDeclaration> fields) {
         this.fields = fields;
     }
 
@@ -131,8 +131,8 @@ public class DefaultJavaClassDeclaration extends DefaultAnnotatedName implements
     public boolean isSerializable() {
         return isSerializable;
     }
-    
+
     public boolean isTopLevelClass() {
         return nestingKind.equals(NestingKind.TOP_LEVEL.toString());
-    }    
+    }
 }

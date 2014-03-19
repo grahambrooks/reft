@@ -4,16 +4,15 @@ import com.sun.source.tree.*;
 import com.sun.source.util.SourcePositions;
 import com.sun.source.util.TreePath;
 import com.sun.source.util.Trees;
-import reft.common.model.*;
-import reft.common.util.CodeAnalyzerUtil;
+import reft.model.*;
 
 import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleElementVisitor6;
 import java.util.List;
 
-import static reft.common.util.CodeAnalyzerConstants.DEFAULT_CONSTRUCTOR_NAME;
-import static reft.common.util.CodeAnalyzerConstants.SERIALIZABLE_PKG;
+import static reft.util.CodeAnalyzerConstants.DEFAULT_CONSTRUCTOR_NAME;
+import static reft.util.CodeAnalyzerConstants.SERIALIZABLE_PKG;
 
 public class ScanHelper {
     public static void populateAnnotationDeclaration(DefaultJavaClassDeclaration clazzInfo, AnnotationTree annotationTree, TypeMirror mirror) {
@@ -26,22 +25,18 @@ public class ScanHelper {
 
         TypeElement e = (TypeElement) trees.getElement(path);
 
-        //Set qualified class name
-        clazzInfo.setName(e.getQualifiedName().toString());
+        clazzInfo.setName(new QualifiedName(e.getQualifiedName().toString()));
 
-        //Set Nesting kind
         clazzInfo.setNestingKind(e.getNestingKind().toString());
 
         clazzInfo.addModifiers(e.getModifiers());
 
-        //Set extending class info
         clazzInfo.setNameOfSuperClass(e.getSuperclass().toString());
 
-        //Set implementing interface details
         for (TypeMirror mirror : e.getInterfaces()) {
             clazzInfo.addNameOfInterface(mirror.toString());
         }
-        //Set serializable property
+
         try {
             Class serializable = Class.forName(SERIALIZABLE_PKG);
             Class thisClass = Class.forName(e.getQualifiedName().toString());
@@ -63,7 +58,7 @@ public class ScanHelper {
 
         clazzInfo.setLocationInfo(getLocationInfo(trees, path, classTree));
 
-        //setJavaTreeDetails
+
         DefaultJavaSourceTree treeInfo = new DefaultJavaSourceTree();
         TreePath tp = trees.getPath(e);
         treeInfo.setCompileTree(tp.getCompilationUnit());
@@ -76,7 +71,7 @@ public class ScanHelper {
         if (e != null) {
 
             String fieldName = variableTree.getName().toString();
-            DefaultFieldDeclaration field = new DefaultFieldDeclaration(fieldName, e.getModifiers());
+            DefaultFieldDeclaration field = new DefaultFieldDeclaration(new QualifiedName(fieldName), e.getModifiers());
             field.setOwningClass(clazzInfo);
             clazzInfo.addField(field);
 
@@ -103,12 +98,11 @@ public class ScanHelper {
 
         //Check if the method is a default constructor
         if (methodName.equals(DEFAULT_CONSTRUCTOR_NAME)) {
-            methodInfo.setName(CodeAnalyzerUtil.getSimpleNameFromQualifiedName
-                    (clazzInfo.getName()));
+            methodInfo.setName(clazzInfo.getName());
             clazzInfo.addConstructor(methodInfo);
         } else {
             clazzInfo.addMethod(methodInfo);
-            methodInfo.setName(methodName);
+            methodInfo.setName(new QualifiedName(methodName));
         }
 
         LocationInfo locationInfo = getLocationInfo(trees, path, methodTree);
