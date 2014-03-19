@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<project name="reft" default="package" basedir=".">
+
+    <property name="java.sources.dir" value="${basedir}/src/java"/>
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="classes" value="${build.dir}/classes"/>
+    <property name="one-jar.dist.dir" value="Tools/one-jar-ant"/>
+
+    <taskdef name="one-jar" classname="com.simontuffs.onejar.ant.OneJarTask"
+             classpath="Tools/one-jar-ant-task-0.97.jar" onerror="report"/>
+
+    <path id="runtime.classpath">
+        <pathelement location="lib/runtime/antlr-4.0-complete.jar"/>
+        <pathelement location="lib/runtime/totallylazy-1192.jar"/>
+    </path>
+
+    <path id="test.classpath">
+        <pathelement location="lib/test/mockito-all-1.9.5.jar"/>
+    </path>
+
+    <path id="build.classpath">
+        <path refid="runtime.classpath"/>
+        <path refid="test.classpath"/>
+        <pathelement location="${classes}"/>
+    </path>
+
+    <target name="migration-grammar">
+        <java jar="Tools/antlr-4.0-complete.jar" fork="yes" dir="src/antlr">
+            <arg value="Migration.g4"/>
+            <arg value="-o"/>
+            <arg value="${basedir}/src/java/reft/migration/parser"/>
+            <arg value="-visitor"/>
+        </java>
+    </target>
+
+    <target name="compile" depends="migration-grammar">
+        <mkdir dir="${classes}"/>
+
+        <javac srcdir="${java.sources.dir}"
+               destdir="${classes}"
+               classpathref="build.classpath"
+               includeantruntime="no"
+                source="1.8" target="1.8"/>
+
+    </target>
+
+    <target name="package" depends="compile">
+        <one-jar destfile="reft.jar">
+            <manifest>
+                <attribute name="Main-Class" value="reft.Console"/>
+                <attribute name="One-Jar-Main-Class" value="reft.Console"/>
+            </manifest>
+            <main>
+                <fileset dir="${classes}"/>
+                <fileset dir="src/resource"/>
+            </main>
+            <lib>
+                <fileset file="lib/runtime/antlr-4.0-complete.jar"/>
+            </lib>
+        </one-jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="build"/>
+        <delete file="src/java/reft/Java/Java.tokens"/>
+        <delete file="src/java/reft/Java/JavaBaseListener.java"/>
+        <delete file="src/java/reft/Java/JavaBaseVisitor.java"/>
+        <delete file="src/java/reft/Java/JavaLexer.java"/>
+        <delete file="src/java/reft/Java/JavaLexer.tokens"/>
+        <delete file="src/java/reft/Java/JavaListener.java"/>
+        <delete file="src/java/reft/Java/JavaParser.java"/>
+        <delete file="src/java/reft/Java/JavaVisitor.java"/>
+        <delete dir="src/java/reft/Migration"/>
+    </target>
+</project>
