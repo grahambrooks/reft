@@ -73,4 +73,3 @@ automated the changes can be integrated into a Continuous Delivery
 pipeline. Changes would flow unencumbered through the system and
 verified through automated tests in the consuming applicaiton.
 
-
