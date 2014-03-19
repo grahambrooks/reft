@@ -6,6 +6,8 @@ tagline: automated source code REFactoring Tool
 {% include JB/setup %}
 
 Status: Proof of concept development
+[source](https://github.com/grahambrooks/reft)
+
 
 # The Problem
 
