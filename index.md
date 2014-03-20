@@ -64,7 +64,7 @@ then be applied to the calling code.
 REFT file
 
 	migration 1.0.2 -> 1.0.3 {
-		rename method invocation org.awesome.SomeAwesomeCapability.someAwesomeMethod() -> someMoreAwesomeMethod()
+		org.awesome.SomeAwesomeCapability.someAwesomeMethod() -> someMoreAwesomeMethod()
 	}
 
 The REFT file is read by REFT and applied to the calling code to bring
