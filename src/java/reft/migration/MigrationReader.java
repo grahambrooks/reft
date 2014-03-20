@@ -1,22 +1,26 @@
 package reft.migration;
 
+import reft.migration.parser.MigrationParser;
 import reft.model.QualifiedName;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import reft.model.predicate.MethodInvocationPredicate;
+import reft.refactor.RenameMethodInvocation;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.googlecode.totallylazy.Sequences.sequence;
 
 class MigrationReader {
 
-    private QualifiedName buildQualifiedName(List<TerminalNode> elements) {
-        String name = sequence(elements).last().getText();
-        List<String> qualification = sequence(elements).take(elements.size() - 1).foldLeft(new ArrayList<>(), (set, element) -> {
-            set.add(element.getText());
-            return set;
-        });
-        return new QualifiedName(qualification, name);
+    QualifiedName qualifiedName(MigrationParser.QualifiedNameContext context) {
+        int i = 0;
+        ArrayList<String> qualification = new ArrayList<>();
+        while (context.prefix.Identifier(i) != null) {
+            qualification.add(context.prefix.Identifier(i).getText());
+            i++;
+        }
+
+        return new QualifiedName(qualification, context.name.getText());
     }
 
+    public RenameMethodInvocation renameMethodInvocation(MigrationParser.InvocationContext invocation) {
+        return new RenameMethodInvocation(new MethodInvocationPredicate(qualifiedName(invocation.predicate)), qualifiedName(invocation.newName));
+    }
 }

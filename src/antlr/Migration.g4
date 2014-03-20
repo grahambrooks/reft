@@ -15,19 +15,22 @@ migrationFile
 migrationDeclaration
     :   'migration'
         (
-            renameMigration ';'
+            invocation ';'
         )
     ;
 
-renameMigration
-    :   'rename' predicate=qualifiedName 'to' newName=Identifier
+invocation
+    :   predicate=qualifiedName '(' ')' '->' newName=qualifiedName '(' ')'
     ;
 
         
 qualifiedName
-    :   Identifier ('.' Identifier )*
+    :   prefix=qualification name=Identifier
     ;
 
+qualification
+    : (Identifier '.')*
+    ;
 
 Identifier
     :   Letter (Letter|JavaIDDigit)*

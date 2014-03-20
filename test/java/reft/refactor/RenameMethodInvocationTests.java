@@ -16,13 +16,13 @@ public class RenameMethodInvocationTests {
     @Test
     public void noCodeChangeIfPredicateDoesNotMatch() {
         MethodInvocationPredicate testing = new MethodInvocationPredicate("com.example.Text", "testing");
-        RenameMethodInvocation renameMethodInvocation = new RenameMethodInvocation(testing, "foo");
+        RenameMethodInvocation renameMethodInvocation = new RenameMethodInvocation(testing, new QualifiedName("foo"));
 
         LocationInfo nameLocation = new LocationInfo();
 
         MethodInvocation invocation = new MethodInvocation(new QualifiedName("org.example.Text.testing"), nameLocation, Collections.emptyList());
 
-        ArrayList<SourceChange> changes = new ArrayList<>();
+        ArrayList<ReplaceSourceChange> changes = new ArrayList<ReplaceSourceChange>();
 
         renameMethodInvocation.apply(invocation, changes);
 
@@ -32,14 +32,14 @@ public class RenameMethodInvocationTests {
     @Test
     public void codeChangeOnMatchingPredicate() {
         MethodInvocationPredicate testing = new MethodInvocationPredicate("com.example.Text", "testing");
-        RenameMethodInvocation renameMethodInvocation = new RenameMethodInvocation(testing, "testMe");
+        RenameMethodInvocation renameMethodInvocation = new RenameMethodInvocation(testing, new QualifiedName("testMe"));
 
         LocationInfo nameLocation = new LocationInfo();
         nameLocation.setLineNumber(200);
 
         MethodInvocation invocation = new MethodInvocation(new QualifiedName("com.example.Text.testing"), nameLocation, Collections.emptyList());
 
-        ArrayList<SourceChange> changes = new ArrayList<>();
+        ArrayList<ReplaceSourceChange> changes = new ArrayList<ReplaceSourceChange>();
 
         renameMethodInvocation.apply(invocation, changes);
 

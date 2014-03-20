@@ -11,10 +11,10 @@ import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleElementVisitor6;
 import java.util.List;
 
-import static reft.util.CodeAnalyzerConstants.DEFAULT_CONSTRUCTOR_NAME;
-import static reft.util.CodeAnalyzerConstants.SERIALIZABLE_PKG;
-
 public class ScanHelper {
+    public static final String SERIALIZABLE_PKG = "java.io.Serializable";
+    public static final String DEFAULT_CONSTRUCTOR_NAME = "<init>";
+
     public static void populateAnnotationDeclaration(DefaultJavaClassDeclaration clazzInfo, AnnotationTree annotationTree, TypeMirror mirror) {
         String qualifiedName = mirror.toString();
 
