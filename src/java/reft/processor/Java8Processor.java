@@ -13,7 +13,7 @@ import java.util.Set;
 @SupportedAnnotationTypes("*")
 public class Java8Processor extends AbstractProcessor {
     private Trees trees;
-    JavaScanner scanner;
+    private final JavaScanner scanner;
 
     public Java8Processor(JavaScanner scanner) {
         this.scanner = scanner;

@@ -8,7 +8,7 @@ public class DefaultMethodDeclaration extends DefaultAnnotatedName implements Me
     private ClassFile owningClass;
     private Collection<String> parameters = new ArrayList<>();
     private String returnType;
-    Collection<String> exceptions = new ArrayList<>();
+    private Collection<String> exceptions = new ArrayList<>();
 
     public ClassFile getOwningClass() {
         return owningClass;

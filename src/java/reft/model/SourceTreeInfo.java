@@ -5,7 +5,7 @@ import com.sun.source.tree.Tree;
 import com.sun.source.util.SourcePositions;
 
 
-public class SourceTreeInfo {
+class SourceTreeInfo {
 
     private Tree tree = null;
     private CompilationUnitTree compileTree = null;

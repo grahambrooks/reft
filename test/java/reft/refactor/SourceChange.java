@@ -3,9 +3,9 @@ package reft.refactor;
 import reft.model.Location;
 
 public class SourceChange {
-    private Location location;
+    private final Location location;
 
-    public SourceChange(Location location) {
+    SourceChange(Location location) {
 
         this.location = location;
     }

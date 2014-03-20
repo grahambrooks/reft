@@ -8,7 +8,7 @@ import java.util.List;
 
 import static com.googlecode.totallylazy.Sequences.sequence;
 
-public class MigrationReader {
+class MigrationReader {
 
     private QualifiedName buildQualifiedName(List<TerminalNode> elements) {
         String name = sequence(elements).last().getText();

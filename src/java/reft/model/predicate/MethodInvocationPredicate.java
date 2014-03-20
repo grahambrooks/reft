@@ -4,7 +4,7 @@ import reft.model.MethodInvocation;
 import reft.model.QualifiedName;
 
 public class MethodInvocationPredicate {
-    private QualifiedName qualifiedName;
+    private final QualifiedName qualifiedName;
 
     public MethodInvocationPredicate(String className, String methodName) {
         this.qualifiedName = new QualifiedName(className, methodName);

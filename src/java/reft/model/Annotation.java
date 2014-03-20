@@ -1,6 +1,6 @@
 package reft.model;
 
-public interface Annotation {
+interface Annotation {
 
     String getName();
 }

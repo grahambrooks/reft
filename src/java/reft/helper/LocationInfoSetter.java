@@ -43,8 +43,7 @@ public class LocationInfoSetter {
      * @return Character buffer representation of the java source file
      */
     private static CharBuffer getCharacterBufferOfSource(String javaFile) {
-        CharBuffer charBuffer = CharBuffer.wrap(javaFile.toCharArray());
-        return charBuffer;
+        return CharBuffer.wrap(javaFile.toCharArray());
     }
 
     private static void setLocInfoOfClass(DefaultJavaClassDeclaration clazzInfo,

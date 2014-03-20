@@ -4,7 +4,7 @@ package reft.migration.parser;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
-public interface MigrationListener extends ParseTreeListener {
+interface MigrationListener extends ParseTreeListener {
     void enterRenameMigration(MigrationParser.RenameMigrationContext ctx);
 
     void exitRenameMigration(MigrationParser.RenameMigrationContext ctx);

@@ -6,11 +6,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class DefaultAnnotatedName implements AnnotatedName {
-
     private QualifiedName name = null;
-
-    private Collection<Annotation> annontations = new ArrayList<>();
-    List<Modifier> modifiers = new ArrayList<>();
+    private final Collection<Annotation> annotations = new ArrayList<>();
+    private final List<Modifier> modifiers = new ArrayList<>();
 
     public void addModifiers(Collection<Modifier> modifiers) {
         this.modifiers.addAll(modifiers);
@@ -55,11 +53,11 @@ public class DefaultAnnotatedName implements AnnotatedName {
     }
 
     public Collection<Annotation> getAnnotations() {
-        return annontations;
+        return annotations;
     }
 
     public void addAnnotation(Annotation annotation) {
-        annontations.add(annotation);
+        annotations.add(annotation);
     }
 
     public Location getLocationInfo() {

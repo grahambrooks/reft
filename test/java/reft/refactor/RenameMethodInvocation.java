@@ -5,9 +5,9 @@ import reft.model.predicate.MethodInvocationPredicate;
 
 import java.util.ArrayList;
 
-public class RenameMethodInvocation {
-    private MethodInvocationPredicate predicate;
-    private String newName;
+class RenameMethodInvocation {
+    private final MethodInvocationPredicate predicate;
+    private final String newName;
 
     public RenameMethodInvocation(MethodInvocationPredicate predicate, String newName) {
 

@@ -25,9 +25,9 @@ import java.util.ArrayList;
 import static com.googlecode.totallylazy.Sequences.sequence;
 
 public class MigrationTreePathScanner extends TreePathScanner<Object, Trees> implements JavaScanner {
-    DefaultJavaClassDeclaration clazzInfo = new DefaultJavaClassDeclaration();
-    private ClassModelMap model;
-    private MigrationDriver driver;
+    private final DefaultJavaClassDeclaration clazzInfo = new DefaultJavaClassDeclaration();
+    private final ClassModelMap model;
+    private final MigrationDriver driver;
 
     public MigrationTreePathScanner(ClassModelMap model, MigrationDriver analyzer) {
         this.model = model;

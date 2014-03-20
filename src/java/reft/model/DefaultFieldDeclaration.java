@@ -8,7 +8,7 @@ import java.util.Set;
 public class DefaultFieldDeclaration extends DefaultAnnotatedName implements FieldDeclaration {
 
     private ClassFile owningClass;
-    private Collection<String> fieldTypes = new ArrayList<>();
+    private final Collection<String> fieldTypes = new ArrayList<>();
 
     public DefaultFieldDeclaration(QualifiedName name, Set<Modifier> modifiers) {
         this.setName(name);

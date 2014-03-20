@@ -4,7 +4,7 @@ package reft.migration.parser;
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
-public interface MigrationVisitor<T> extends ParseTreeVisitor<T> {
+interface MigrationVisitor<T> extends ParseTreeVisitor<T> {
     T visitRenameMigration(MigrationParser.RenameMigrationContext ctx);
 
     T visitQualifiedName(MigrationParser.QualifiedNameContext ctx);

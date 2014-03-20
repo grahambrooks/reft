@@ -2,7 +2,9 @@ package reft.migration;
 
 import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.util.List;
-import reft.model.*;
+import reft.model.Location;
+import reft.model.MethodInvocation;
+import reft.model.QualifiedName;
 import reft.model.predicate.MethodInvocationPredicate;
 
 import java.util.ArrayList;
@@ -11,11 +13,9 @@ import java.util.Collection;
 import static com.googlecode.totallylazy.Sequences.sequence;
 
 public class MigrationDriver {
-    ClassModelMap model;
-    Collection<MethodInvocationPredicate> methodInvocationPredicates = new ArrayList<>();
+    private Collection<MethodInvocationPredicate> methodInvocationPredicates = new ArrayList<>();
 
-    public MigrationDriver(ClassModelMap model) {
-        this.model = model;
+    public MigrationDriver() {
     }
 
     public void methodInvocation(QualifiedName methodName, Location nameLocation, List<Symbol.VarSymbol> parameters) {

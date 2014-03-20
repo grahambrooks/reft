@@ -14,7 +14,7 @@ import java.util.List;
 import static com.googlecode.totallylazy.Sequences.sequence;
 
 public class MigrationController {
-    Iterable<AbstractProcessor> processors;
+    private final Iterable<AbstractProcessor> processors;
 
 
     public MigrationController(Iterable<AbstractProcessor> processors) {

@@ -14,7 +14,7 @@ public class ScanningTests {
     @Test
     public void test() {
         ClassModelMap model = new ClassModelMap();
-        MigrationDriver analyzer = new MigrationDriver(model);
+        MigrationDriver analyzer = new MigrationDriver();
         MigrationController controller = new MigrationController(Arrays.asList(new Java8Processor(new MigrationTreePathScanner(model, analyzer))));
         controller.migrate(Arrays.asList("test/project/org/Console.java"));
 

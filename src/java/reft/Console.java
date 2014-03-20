@@ -18,7 +18,7 @@ public class Console {
                 System.exit(0);
             } else {
                 ClassModelMap model = new ClassModelMap();
-                MigrationDriver analyzer = new MigrationDriver(model);
+                MigrationDriver analyzer = new MigrationDriver();
                 MigrationTreePathScanner scanner = new MigrationTreePathScanner(model, analyzer);
                 Java8Processor processor = new Java8Processor(scanner);
 

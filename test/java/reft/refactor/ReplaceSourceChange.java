@@ -2,8 +2,8 @@ package reft.refactor;
 
 import reft.model.Location;
 
-public class ReplaceSourceChange extends SourceChange {
-    private String replacement;
+class ReplaceSourceChange extends SourceChange {
+    private final String replacement;
 
     public ReplaceSourceChange(Location location, String replacement) {
         super(location);

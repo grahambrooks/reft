@@ -125,8 +125,8 @@ public class ScanHelper {
     }
 
 
-    public static LocationInfo getLocationInfo(Trees trees, TreePath path, Tree tree) {
-        //Set Temp LocationInfo
+    private static LocationInfo getLocationInfo(Trees trees, TreePath path, Tree tree) {
+
         LocationInfo locationInfo = new LocationInfo();
         SourcePositions sourcePosition = trees.getSourcePositions();
         long startPosition = sourcePosition.getStartPosition(path.getCompilationUnit(), tree);

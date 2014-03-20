@@ -4,7 +4,7 @@ import com.sun.source.tree.CompilationUnitTree;
 import com.sun.source.tree.Tree;
 import com.sun.source.util.SourcePositions;
 
-public interface JavaSourceTree {
+interface JavaSourceTree {
     
     CompilationUnitTree getCompileTree();
     
