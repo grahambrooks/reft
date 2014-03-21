@@ -2,9 +2,12 @@
 <project name="reft" default="package" basedir=".">
 
     <property name="java.sources.dir" value="${basedir}/src/java"/>
+    <property name="java.test.sources.dir" value="${basedir}/test/java"/>
     <property name="build.dir" value="${basedir}/build"/>
     <property name="classes" value="${build.dir}/classes"/>
+    <property name="test.classes" value="${build.dir}/test-classes"/>
     <property name="one-jar.dist.dir" value="Tools/one-jar-ant"/>
+    <property name="test.report.dir" value="${build.dir}/test-reports"/>
 
     <taskdef name="one-jar" classname="com.simontuffs.onejar.ant.OneJarTask"
              classpath="Tools/one-jar-ant-task-0.97.jar" onerror="report"/>
@@ -15,6 +18,8 @@
     </path>
 
     <path id="test.classpath">
+        <pathelement location="lib/test/junit-4.11.jar"/>
+        <pathelement location="lib/test/hamcrest-core-1.3.jar"/>
         <pathelement location="lib/test/mockito-all-1.9.5.jar"/>
     </path>
 
@@ -41,11 +46,43 @@
                destdir="${classes}"
                classpathref="build.classpath"
                includeantruntime="no"
-                source="1.8" target="1.8"/>
-
+               source="1.8" target="1.8"/>
     </target>
 
-    <target name="package" depends="compile">
+    <target name="compile.tests" depends="compile">
+        <mkdir dir="${test.classes}"/>
+
+        <javac srcdir="${java.test.sources.dir}"
+               destdir="${test.classes}"
+               classpathref="build.classpath"
+               includeantruntime="no"
+               source="1.8" target="1.8"/>
+    </target>
+
+    <target name="test" depends="compile.tests">
+        <mkdir dir="${test.report.dir}"/>
+        <delete>
+            <fileset dir="${test.report.dir}"/>
+        </delete>
+        <mkdir dir="${test.report.dir}"/>
+
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <path refid="build.classpath"/>
+                <path refid="test.classpath"/>
+                <pathelement path="${test.classes}"/>
+            </classpath>
+
+            <formatter type="plain"/>
+
+            <batchtest fork="yes" todir="${test.report.dir}">
+                <fileset dir="${java.test.sources.dir}" includes="**/*Test*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+
+    <target name="package" depends="compile, compile.tests, test">
         <one-jar destfile="reft.jar">
             <manifest>
                 <attribute name="Main-Class" value="reft.Console"/>

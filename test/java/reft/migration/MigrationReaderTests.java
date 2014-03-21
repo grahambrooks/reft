@@ -9,7 +9,8 @@ import reft.migration.parser.MigrationParser;
 import reft.model.QualifiedName;
 import reft.refactor.RenameMethodInvocation;
 
-import static org.hamcrest.Matchers.is;
+
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class MigrationReaderTests {
