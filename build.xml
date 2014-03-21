@@ -21,6 +21,7 @@
     <path id="build.classpath">
         <path refid="runtime.classpath"/>
         <path refid="test.classpath"/>
+        <path path="${java.home}/../lib/tools.jar"/>
         <pathelement location="${classes}"/>
     </path>
 
@@ -52,7 +53,6 @@
             </manifest>
             <main>
                 <fileset dir="${classes}"/>
-                <fileset dir="src/resource"/>
             </main>
             <lib>
                 <fileset file="lib/runtime/antlr-4.2-complete.jar"/>
