@@ -52,7 +52,7 @@ public class MigrationController {
             if (sourceFile.exists()) {
                 files.add(sourceFile);
             } else {
-                System.out.println(fileName + " does not existing (Ignored)");
+                System.out.println(fileName + " does not exist (Ignored)");
             }
             return files;
         });

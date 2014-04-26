@@ -6,14 +6,33 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.Test;
 import reft.migration.parser.MigrationLexer;
 import reft.migration.parser.MigrationParser;
+import reft.model.Migration;
 import reft.model.QualifiedName;
 import reft.refactor.RenameMethodInvocation;
 
+import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.CoreMatchers.isA;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class MigrationReaderTests {
+    @Test
+    public void readsSimpleCallMigration() throws UnsupportedEncodingException {
+        String input = "migration someAwesomeMethod() -> someMoreAwesomeMethod();";
+
+        MigrationReader reader = new MigrationReader();
+
+        Collection<Migration> migrations = reader.readMigrations(new ByteArrayInputStream(input.getBytes("UTF-8")));
+
+        assertThat(migrations.size(), is(1));
+        Migration migration = migrations.iterator().next();
+        assertThat(migration, isA((Class) RenameMethodInvocation.class));
+
+    }
+
     @Test
     public void readsQualifiedNames() {
         String input = "a.b.c";

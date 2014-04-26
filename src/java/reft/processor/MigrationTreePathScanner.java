@@ -29,9 +29,9 @@ public class MigrationTreePathScanner extends TreePathScanner<Object, Trees> imp
     private final ClassModelMap model;
     private final MigrationDriver driver;
 
-    public MigrationTreePathScanner(ClassModelMap model, MigrationDriver analyzer) {
+    public MigrationTreePathScanner(ClassModelMap model, MigrationDriver driver) {
         this.model = model;
-        this.driver = analyzer;
+        this.driver = driver;
     }
 
     @Override

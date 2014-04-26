@@ -22,7 +22,7 @@ public class RenameMethodInvocationTests {
 
         MethodInvocation invocation = new MethodInvocation(new QualifiedName("org.example.Text.testing"), nameLocation, Collections.emptyList());
 
-        ArrayList<ReplaceSourceChange> changes = new ArrayList<ReplaceSourceChange>();
+        ArrayList<SourceChange> changes = new ArrayList<SourceChange>();
 
         renameMethodInvocation.apply(invocation, changes);
 
@@ -39,7 +39,7 @@ public class RenameMethodInvocationTests {
 
         MethodInvocation invocation = new MethodInvocation(new QualifiedName("com.example.Text.testing"), nameLocation, Collections.emptyList());
 
-        ArrayList<ReplaceSourceChange> changes = new ArrayList<ReplaceSourceChange>();
+        ArrayList<SourceChange> changes = new ArrayList<SourceChange>();
 
         renameMethodInvocation.apply(invocation, changes);
 

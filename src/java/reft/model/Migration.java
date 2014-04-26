@@ -1,5 +1,9 @@
 package reft.model;
 
+import reft.refactor.SourceChange;
+
+import java.util.List;
+
 public interface Migration {
-    void apply(AnnotatedName model);
+    public void apply(MethodInvocation invocation, List<SourceChange> changes);
 }

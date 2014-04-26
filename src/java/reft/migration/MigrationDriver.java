@@ -1,40 +1,33 @@
 package reft.migration;
 
-import com.sun.tools.javac.code.Symbol;
-import com.sun.tools.javac.util.List;
-import reft.model.Location;
 import reft.model.MethodInvocation;
-import reft.model.QualifiedName;
-import reft.model.predicate.MethodInvocationPredicate;
+import reft.model.Migration;
+import reft.refactor.RenameMethodInvocation;
+import reft.refactor.SourceChange;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import static com.googlecode.totallylazy.Sequences.sequence;
 
 public class MigrationDriver {
-    private Collection<MethodInvocationPredicate> methodInvocationPredicates = new ArrayList<>();
+    private Collection<RenameMethodInvocation> renameMethods = new ArrayList<>();
+    private Collection<Migration> migrations;
+    private List<SourceChange> changes;
 
-    public MigrationDriver() {
-    }
-
-    public void methodInvocation(QualifiedName methodName, Location nameLocation, List<Symbol.VarSymbol> parameters) {
-        new MethodInvocation(methodName, nameLocation, sequence(parameters).foldLeft(new ArrayList<>(), (list, vs) -> {
-            list.add(vs.asType().toString());
-            return list;
-        }));
-        System.out.println("Method invocation: " + methodName);
-
-        for (Symbol.VarSymbol sym : parameters) {
-            System.out.println(sym.asType());
-        }
+    public MigrationDriver(Collection<Migration> migrations, java.util.List<SourceChange> changes) {
+        this.migrations = migrations;
+        sequence(migrations).foldLeft(renameMethods, (s, m) -> {
+            if (m instanceof RenameMethodInvocation) s.add((RenameMethodInvocation) m);
+            return s;
+        });
+        this.changes = changes;
     }
 
     public void apply(MethodInvocation methodInvocation) {
-        for (MethodInvocationPredicate predicate : methodInvocationPredicates) {
-            if (predicate.matches(methodInvocation)) {
-
-            }
+        for (RenameMethodInvocation rename : renameMethods) {
+            rename.apply(methodInvocation, changes);
         }
 
     }

@@ -13,7 +13,7 @@ public class MethodPredicate {
     }
 
     public void test(ClassFile clazzInfo, Migration migration) {
-        clazzInfo.getMethodDeclarations().stream().filter(methodDeclaration -> name.equals(methodDeclaration.getName())).forEach(migration::apply);
+//        clazzInfo.getMethodDeclarations().stream().filter(methodDeclaration -> name.equals(methodDeclaration.getName())).forEach(migration::apply);
     }
 
     public boolean matches(MethodInvocationPredicate invocation) {
