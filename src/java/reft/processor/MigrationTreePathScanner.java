@@ -9,6 +9,7 @@ import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.TreeInfo;
 import com.sun.tools.javac.util.List;
+import com.sun.tools.javac.util.Name;
 import reft.migration.MigrationDriver;
 import reft.model.QualifiedName;
 import reft.model.ClassModelMap;
@@ -41,13 +42,33 @@ public class MigrationTreePathScanner extends TreePathScanner<Object, Trees> imp
 
     @Override
     public Object visitMethodInvocation(MethodInvocationTree node, Trees trees) {
-        Symbol.MethodSymbol method = (Symbol.MethodSymbol) TreeInfo.symbol((JCTree) node.getMethodSelect());
+
+        System.err.println("visiting method invocation: " + node + " of kind: " + node.getKind());
+
+        final JCTree.JCMethodInvocation node1 = (JCTree.JCMethodInvocation) node;
+        final JCTree.JCExpression meth = node1.meth;
+
+        final Name name = TreeInfo.calledMethodName((JCTree) node);
+
+        final JCTree methodSelect = (JCTree) node.getMethodSelect();
+
+        Symbol.MethodSymbol method = (Symbol.MethodSymbol) TreeInfo.symbol(methodSelect);
+        if (method == null) {
+            method = (Symbol.MethodSymbol) TreeInfo.symbolFor(methodSelect);
+        }
+
+        Name methodN = TreeInfo.calledMethodName(methodSelect);
+
+        java.util.List<? extends Tree> typeArgs = node.getTypeArguments();
+
+        java.util.List<? extends ExpressionTree> args = node.getArguments();
+
+
         if (method != null) {
             TypeElement invokedClass = (TypeElement) method.getEnclosingElement();
             List<Symbol.VarSymbol> parameters = method.getParameters();
 
             QualifiedName methodName = new QualifiedName(invokedClass.toString(), method.getQualifiedName().toString());
-
 
             LocationInfo nameLocation = new LocationInfo();
             SourcePositions sourcePosition = trees.getSourcePositions();

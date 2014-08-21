@@ -39,10 +39,15 @@ public class AcceptanceTests {
 
     @Test
     public void simpleMethodCallRename() throws UnsupportedEncodingException {
-        testProject.withClass("org.example.Main", containing("class Main {" +
-                "   public void someMethod() {" +
-                "      someAwesomeMethod();" +
-                "   }" +
+        testProject.withClass("org.example.Main", containing("class Main {\n" +
+                "    public void someAwesomeMethod() {\n" +
+                "\n" +
+                "    }\n" +
+                "\n" +
+                "    public void someMethod() {\n" +
+                "        someAwesomeMethod();\n" +
+                "    }\n" +
+                "    \n" +
                 "}"));
 
         String input = "migration someAwesomeMethod() -> someMoreAwesomeMethod();";

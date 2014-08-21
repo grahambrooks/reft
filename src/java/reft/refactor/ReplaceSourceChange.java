@@ -1,5 +1,6 @@
 package reft.refactor;
 
+import reft.StreamEditor;
 import reft.model.Location;
 
 public class ReplaceSourceChange extends SourceChange {
@@ -16,6 +17,11 @@ public class ReplaceSourceChange extends SourceChange {
 
     @Override
     public String toString() {
-        return "Replace text at " + getLocation() + " with " + getReplacement();
+        return "Replacement text at " + getLocation() + " with " + getReplacement();
+    }
+
+    @Override
+    public StreamEditor.Change toEditorChange() {
+        return StreamEditor.replacement(getLocation(), replacement);
     }
 }

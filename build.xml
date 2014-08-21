@@ -49,7 +49,8 @@
                destdir="${classes}"
                classpathref="runtime.classpath"
                includeantruntime="no"
-               source="1.8" target="1.8"/>
+               source="1.8" target="1.8"
+                />
     </target>
 
     <target name="compile.tests" depends="compile">
@@ -59,7 +60,8 @@
                destdir="${test.classes}"
                classpathref="test.classpath"
                includeantruntime="no"
-               source="1.8" target="1.8"/>
+               source="1.8" target="1.8"
+                />
     </target>
 
     <target name="test" depends="package, test-package">
@@ -78,7 +80,7 @@
             <formatter type="plain"/>
 
             <batchtest fork="yes" todir="${test.report.dir}">
-                <fileset dir="${java.test.sources.dir}" includes="**/*Test*.java"/>
+                <fileset dir="${java.test.sources.dir}" includes="**/*Test?.java"/>
             </batchtest>
         </junit>
     </target>
